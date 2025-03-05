@@ -116,24 +116,25 @@ if uploaded_file:
     is_spin = st.checkbox("Вращение", value=False)
     is_step = st.checkbox("Шаги", value=False)
 
-    if 'filtered_result' not in st.session_state:
-        st.session_state.filtered_result = None
-        if st.button("Фильтровать"):
-            filtered_result = unit_filter(
-                df,
-                segment_name=segment_name,
-                unit_level=unit_level,
-                is_combo=int(is_combo),
-                is_cascade=int(is_cascade),
-                is_clean=int(is_clean),
-                is_jump=int(is_jump),
-                is_spin=int(is_spin),
-                is_step=int(is_step),
-            )
     
-            st.write("Результаты фильтрации:")
-            st.write(filtered_result)
+    if st.button("Фильтровать"):
+        filtered_result = unit_filter(
+            df,
+            segment_name=segment_name,
+            unit_level=unit_level,
+            is_combo=int(is_combo),
+            is_cascade=int(is_cascade),
+            is_clean=int(is_clean),
+            is_jump=int(is_jump),
+            is_spin=int(is_spin),
+            is_step=int(is_step),
+        )
     
+        st.write("Результаты фильтрации:")
+        st.write(filtered_result)
+        
+        if filtered_result not in st.session_state:
+            st.session_state.filtered_result = None
             # Выбор элементов для спортсмена
             st.header("Подбор элементов")
     
