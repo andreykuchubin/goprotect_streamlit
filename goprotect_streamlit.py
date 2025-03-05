@@ -7,6 +7,8 @@ Original file is located at
     https://colab.research.google.com/drive/1QuW-pnOpBNUzMvqF1PSV4-clCQ6WfUHM
 """
 
+pip install -U scikit-learn
+
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -14,6 +16,7 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
 df_total = pd.read_csv('https://raw.githubusercontent.com/andreykuchubin/test_streamlit/main/df_total.csv')
+
 
 # Определение функций
 def unit_filter(
@@ -145,4 +148,8 @@ if uploaded_file:
                 selected_elements = elements_selection(filtered_result, id=id_input, n=n_input)
                 st.write(f"Новые элементы для спортсмена {id_input}:")
                 st.write(selected_elements)
+
+unit_filter()
+
+elements_selection(unit_filter())
 
