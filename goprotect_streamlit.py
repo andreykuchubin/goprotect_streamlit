@@ -111,9 +111,9 @@ if uploaded_file:
     # Флаги фильтрации
     is_combo = st.checkbox("Комбо", value=False)
     is_cascade = st.checkbox("Каскад", value=False)
-    is_clean = st.checkbox("Чистота", value=True)
-    is_jump = st.checkbox("Прыжок", value=True)
-    is_spin = st.checkbox("Вращение", value=True)
+    is_clean = st.checkbox("Чистота", value=False)
+    is_jump = st.checkbox("Прыжок", value=False)
+    is_spin = st.checkbox("Вращение", value=False)
     is_step = st.checkbox("Шаги", value=False)
 
     if st.button("Фильтровать"):
