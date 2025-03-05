@@ -13,9 +13,6 @@ import numpy as np
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
-df_total = pd.read_csv('https://raw.githubusercontent.com/andreykuchubin/test_streamlit/main/df_total.csv')
-
-
 # Определение функций
 def unit_filter(
     df,
@@ -98,7 +95,7 @@ def elements_selection(result, id, n):
 st.title("Фильтр и подбор элементов спортсменов")
 
 # Загрузка данных
-uploaded_file = st.file_uploader("Загрузите CSV файл с данными", type=["csv"])
+uploaded_file = 'https://raw.githubusercontent.com/andreykuchubin/test_streamlit/main/df_total.csv'
 if uploaded_file:
     df = pd.read_csv(uploaded_file)
 
