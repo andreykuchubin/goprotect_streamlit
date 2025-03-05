@@ -117,8 +117,7 @@ if uploaded_file:
     is_step = st.checkbox("Шаги", value=False)
 
     
-    if 'filtered_result' not in st.session_state:
-    st.session_state.filtered_result = None
+    
 
     filtered_result = unit_filter(
         df,
@@ -131,7 +130,8 @@ if uploaded_file:
         is_spin=int(is_spin),
         is_step=int(is_step),
     )
-    
+    if filtered_result not in st.session_state:
+        st.session_state.filtered_result = None
     st.session_state.filtered_result = filtered_result
     
     # Выбор ID спортсмена из отфильтрованного списка
