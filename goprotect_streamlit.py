@@ -49,12 +49,12 @@ def unit_filter(
         ]
         result = df.groupby(['unit_id'], as_index=False).agg({'title': ' '.join})
 
-    text = result['unit_id'].tolist()
-    n = 20
-    parts = [text[i:i + n] for i in range(0, len(text), n)]
-    st.write('Перечень id спортсменов, подходящих под данные критерии:')
-    for part in parts:
-        st.write(part)
+    #text = result['unit_id'].tolist()
+    #n = 20
+    #parts = [text[i:i + n] for i in range(0, len(text), n)]
+    #st.write('Перечень id спортсменов, подходящих под данные критерии:')
+    #for part in parts:
+        #st.write(part)
 
     return result
 
