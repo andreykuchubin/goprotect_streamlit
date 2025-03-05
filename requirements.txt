@@ -1,0 +1,6 @@
+# pip install -r requirements.txt
+
+pandas>=2.2.3
+numpy>=1.26.4
+streamlit>=0.86.0
+scikit-learn>=1.2.2
