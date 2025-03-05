@@ -146,8 +146,3 @@ if uploaded_file:
                 selected_elements = elements_selection(filtered_result, id=id_input, n=n_input)
                 st.write(f"Новые элементы для спортсмена {id_input}:")
                 st.write(selected_elements)
-
-unit_filter()
-
-elements_selection(unit_filter())
-
