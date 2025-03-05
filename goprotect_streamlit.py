@@ -138,6 +138,7 @@ if uploaded_file:
     if st.session_state.filtered_result is not None:
         unit_ids = st.session_state.filtered_result['unit_id'].tolist()
         id_input = st.selectbox("Выберите ID спортсмена для подбора элементов", options=unit_ids)
+        n_input = st.number_input("Количество новых элементов", min_value=1, max_value=10, value=5)
     
         if 'selected_elements' not in st.session_state:
             st.session_state.selected_elements = None
