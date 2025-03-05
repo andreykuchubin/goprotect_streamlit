@@ -20,9 +20,9 @@ def unit_filter(
     unit_level=0,
     is_combo=0,
     is_cascade=0,
-    is_clean=1,
-    is_jump=1,
-    is_spin=1,
+    is_clean=0,
+    is_jump=0,
+    is_spin=0,
     is_step=0
 ):
     if segment_name == 'any':
