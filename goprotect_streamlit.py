@@ -135,8 +135,10 @@ if uploaded_file:
         # Выбор элементов для спортсмена
         st.header("Подбор элементов")
 
-        id_input = st.text_input("Введите ID спортсмена для подбора элементов")
-        n_input = st.number_input("Количество новых элементов", min_value=1, max_value=100, value=5)
+        if filtered_result is not None:
+            unit_ids = filtered_result['unit_id'].tolist()
+            id_input = st.selectbox("Выберите ID спортсмена для подбора элементов", options=unit_ids)
+        n_input = st.number_input("Количество новых элементов", min_value=1, max_value=10, value=5)
 
         if st.button("Подобрать элементы"):
             if id_input and filtered_result is not None:
