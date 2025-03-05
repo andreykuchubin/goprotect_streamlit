@@ -117,34 +117,35 @@ if uploaded_file:
     is_step = st.checkbox("Шаги", value=False)
 
     
-    if st.button("Фильтровать"):
-        filtered_result = unit_filter(
-            df,
-            segment_name=segment_name,
-            unit_level=unit_level,
-            is_combo=int(is_combo),
-            is_cascade=int(is_cascade),
-            is_clean=int(is_clean),
-            is_jump=int(is_jump),
-            is_spin=int(is_spin),
-            is_step=int(is_step),
-        )
+    if 'filtered_result' not in st.session_state:
+    st.session_state.filtered_result = None
+
+    filtered_result = unit_filter(
+        df,
+        segment_name=segment_name,
+        unit_level=unit_level,
+        is_combo=int(is_combo),
+        is_cascade=int(is_cascade),
+        is_clean=int(is_clean),
+        is_jump=int(is_jump),
+        is_spin=int(is_spin),
+        is_step=int(is_step),
+    )
     
-        st.write("Результаты фильтрации:")
-        st.write(filtered_result)
-        
-        if filtered_result not in st.session_state:
-            st.session_state.filtered_result = None
-            # Выбор элементов для спортсмена
-            st.header("Подбор элементов")
+    st.session_state.filtered_result = filtered_result
     
-            if filtered_result is not None:
-                unit_ids = filtered_result['unit_id'].tolist()
-                id_input = st.selectbox("Выберите ID спортсмена для подбора элементов", options=unit_ids)
-            n_input = st.number_input("Количество новых элементов", min_value=1, max_value=10, value=5)
+    # Выбор ID спортсмена из отфильтрованного списка
+    if st.session_state.filtered_result is not None:
+        unit_ids = st.session_state.filtered_result['unit_id'].tolist()
+        id_input = st.selectbox("Выберите ID спортсмена для подбора элементов", options=unit_ids)
     
-            if st.button("Подобрать элементы"):
-                if id_input and filtered_result is not None:
-                    selected_elements = elements_selection(filtered_result, id=id_input, n=n_input)
-                    st.write(f"Новые элементы для спортсмена {id_input}:")
-                    st.write(selected_elements)
+        if 'selected_elements' not in st.session_state:
+            st.session_state.selected_elements = None
+    
+        if st.button("Подобрать элементы"):
+            selected_elements = elements_selection(st.session_state.filtered_result, id=id_input, n=n_input)
+            st.session_state.selected_elements = selected_elements
+    
+        if st.session_state.selected_elements is not None:
+            st.write(f"Новые элементы для спортсмена {id_input}:")
+            st.write(st.session_state.selected_elements)
