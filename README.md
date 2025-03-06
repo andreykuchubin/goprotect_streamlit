@@ -24,3 +24,7 @@ IT-стартап GoProtect.
 и на основе косинусного сходства рекомендует спортсмену элементы к изучению, с которыми справляются спортсмены такого же уровня, а заданный спортсмен их не выполняет. 
 
 Результат работы приведен по [ссылке](https://goprotectapp-nfjherx22yndkuwpvheu6u.streamlit.app/#423fe766).
+
+## Используемый стек
+
+Jupyter Notebook Python: pandas, numpy, matplotlib, seaborn, sklearn, streamlit.
