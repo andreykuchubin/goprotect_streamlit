@@ -150,7 +150,7 @@ if uploaded_file:
             st.session_state.selected_elements = selected_elements
     
         if st.session_state.selected_elements is not None:
-            st.write(f"Новые элементы для спортсмена с id {id_input}:")
+            st.write(f"Новые элементы, рекомендуемые к изучению, для спортсмена с id {id_input}:")
             st.markdown(f"""
             <div style="border: 2px solid #ddd; border-radius: 10px; padding: 10px; margin-bottom: 10px;">
                 <h4 style="color: #FF0000;">{", ".join(map(str, st.session_state.selected_elements))}</h4>
