@@ -92,26 +92,24 @@ def elements_selection(result, id, n):
 
 
 # Streamlit приложение
-st.title("Фильтр и подбор элементов спортсменов")
+st.title("Подбор новых элементов для тренировки спортсменов")
 
 # Загрузка данных
 uploaded_file = 'https://raw.githubusercontent.com/andreykuchubin/test_streamlit/main/df_total.csv'
 if uploaded_file:
     df = pd.read_csv(uploaded_file)
 
-    #st.write("Пример данных:")
-    #st.write(df.head())
-
+    
     # Фильтрация данных
     st.header("Фильтрация данных")
 
-    segment_name = st.selectbox("Тип программы", options=['any'] + df['segment_name'].unique().tolist())
+    segment_name = st.selectbox("Тип программы", options=['Любой'] + df['segment_name'].unique().tolist())
     unit_level = st.slider("Уровень спортсмена", min_value=int(df['unit_level'].min()), max_value=int(df['unit_level'].max()), value=0)
 
     # Флаги фильтрации
     is_clean = st.checkbox("Выполнено чисто", value=False)
-    is_combo = st.checkbox("Комбо", value=False)
-    is_cascade = st.checkbox("Каскад", value=False)
+    is_combo = st.checkbox("Входит в состав комбинации", value=False)
+    is_cascade = st.checkbox("Входит в состав каскада", value=False)
     is_jump = st.checkbox("Прыжок", value=False)
     is_spin = st.checkbox("Вращение", value=False)
     is_step = st.checkbox("Шаги", value=False)
@@ -130,6 +128,10 @@ if uploaded_file:
         is_spin=int(is_spin),
         is_step=int(is_step),
     )
+
+    st.write("Пример набора данных после фильтрации:")
+    st.write(df.head())
+    
     if filtered_result not in st.session_state:
         st.session_state.filtered_result = None
     st.session_state.filtered_result = filtered_result
@@ -137,7 +139,7 @@ if uploaded_file:
     # Выбор ID спортсмена из отфильтрованного списка
     if st.session_state.filtered_result is not None:
         unit_ids = st.session_state.filtered_result['unit_id'].tolist()
-        id_input = st.selectbox("Выберите ID спортсмена для подбора элементов", options=unit_ids)
+        id_input = st.selectbox("Выберите ID спортсмена для подбора подходящих по параметрам элементов", options=unit_ids)
         n_input = st.number_input("Количество новых элементов", min_value=1, max_value=10, value=5)
     
         if 'selected_elements' not in st.session_state:
@@ -148,5 +150,10 @@ if uploaded_file:
             st.session_state.selected_elements = selected_elements
     
         if st.session_state.selected_elements is not None:
-            st.write(f"Новые элементы для спортсмена {id_input}:")
-            st.write(st.session_state.selected_elements)
+            st.write(f"Новые элементы для спортсмена с id {id_input}:")
+            for element in st.session_state.selected_elements:
+                st.markdown(f"""
+                <div style="border: 1px solid #ddd; border-radius: 5px; padding: 10px; margin-bottom: 10px;">
+                    <h4 style="color: #007BFF;">Элемент: {element}</h4>
+                </div>
+                """, unsafe_allow_html=True)
