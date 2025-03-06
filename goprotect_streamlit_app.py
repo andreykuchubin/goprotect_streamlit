@@ -130,7 +130,7 @@ if uploaded_file:
     )
 
     st.write("Пример набора данных после фильтрации:")
-    st.write(df.head())
+    st.write(filtered_result.head())
     
     if filtered_result not in st.session_state:
         st.session_state.filtered_result = None
@@ -151,9 +151,8 @@ if uploaded_file:
     
         if st.session_state.selected_elements is not None:
             st.write(f"Новые элементы для спортсмена с id {id_input}:")
-            for element in st.session_state.selected_elements:
-                st.markdown(f"""
-                <div style="border: 1px solid #ddd; border-radius: 5px; padding: 10px; margin-bottom: 10px;">
-                    <h4 style="color: #007BFF;">Элемент: {element}</h4>
-                </div>
-                """, unsafe_allow_html=True)
+            st.markdown(f"""
+            <div style="border: 2px solid #ddd; border-radius: 10px; padding: 10px; margin-bottom: 10px;">
+                <h4 style="color: #007BFF;">*st.session_state.selected_elements</h4>
+            </div>
+            """, unsafe_allow_html=True)
