@@ -153,6 +153,6 @@ if uploaded_file:
             st.write(f"Новые элементы для спортсмена с id {id_input}:")
             st.markdown(f"""
             <div style="border: 2px solid #ddd; border-radius: 10px; padding: 10px; margin-bottom: 10px;">
-                <h4 style="color: #007BFF;">{*st.session_state.selected_elements}</h4>
+                <h4 style="color: #007BFF;">{st.session_state.selected_elements}</h4>
             </div>
             """, unsafe_allow_html=True)
